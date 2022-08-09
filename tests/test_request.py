@@ -32,38 +32,29 @@ def test_get_users():
     )
     mycursor = mydb.cursor()
 
-  
-    
-
-
     get_response = requests.get(BASE_URL)
     response_text = get_response.json()
     with open('users.json', 'w') as json_file:
         json.dump(response_text, json_file)
     print(response_text)
     print(len(response_text))
-    jsonvalue = []
  
     for i in response_text:
         id_list = i['id']
         name_list= i['name']
         email_list =i['email']
         gender_option= i['gender']
-        status_option=i['status']
-        
+        status_option=i['status']       
         mycursor.execute("INSERT INTO users (userId, name, email, gender, status) VALUES (%s, %s, %s, %s, %s)", (id_list, name_list, email_list, gender_option, status_option))
-    #mycursor.execute("INSERT INTO users (userId, name, email, gender, status) VALUES ('{}','{}','{}', '{}', '{}')".format(i['id_list'], i['name_list'], i['email_list'], i['gender_option'], i['status_option']))
         mydb.commit()
     
-
-    
-    mycursor.execute("SELECT * FROM users")
+    mycursor.execute("SELECT * FROM users WHERE userId=3904")
 
     myresult = mycursor.fetchall()
 
     for x in myresult:
         print(x)
-    # assert_that(get_response.status_code).is_equal_to(requests.codes.ok)
+
     
 
 
