@@ -5,6 +5,9 @@ from assertpy.assertpy import assert_that
 from uuid import uuid4
 from json import dumps
 import pytest
+import mysql.connector
+import json
+import pymysql
 
 
 
@@ -20,42 +23,76 @@ import pytest
 #             all_users.append(dict(id=j["id"],name=j["name"],email=j["email"],gender=j["gender"],status=j["status"]))
 #     print(all_users)
 
-
-
 def test_get_users():
+    mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="admin12345",
+    database="gorestusers"
+    )
+    mycursor = mydb.cursor()
+
+  
+    
+
+
     get_response = requests.get(BASE_URL)
     response_text = get_response.json()
+    with open('users.json', 'w') as json_file:
+        json.dump(response_text, json_file)
     print(response_text)
     print(len(response_text))
-    assert_that(get_response.status_code).is_equal_to(requests.codes.ok)
+    jsonvalue = []
+ 
+    for i in response_text:
+        id_list = i['id']
+        name_list= i['name']
+        email_list =i['email']
+        gender_option= i['gender']
+        status_option=i['status']
+        
+        mycursor.execute("INSERT INTO users (userId, name, email, gender, status) VALUES (%s, %s, %s, %s, %s)", (id_list, name_list, email_list, gender_option, status_option))
+    #mycursor.execute("INSERT INTO users (userId, name, email, gender, status) VALUES ('{}','{}','{}', '{}', '{}')".format(i['id_list'], i['name_list'], i['email_list'], i['gender_option'], i['status_option']))
+        mydb.commit()
+    
+
+    
+    mycursor.execute("SELECT * FROM users")
+
+    myresult = mycursor.fetchall()
+
+    for x in myresult:
+        print(x)
+    # assert_that(get_response.status_code).is_equal_to(requests.codes.ok)
+    
 
 
 
 # #POST METHOD
 
-def test_create_user():
-    # all_users = test_get_all_data()
-    unique_name = f'User{str(uuid4())}'
-    payload = dumps(
-        {"name": unique_name, 
-        "gender":"male", 
-        "email": unique_name + '@gmail.com', 
-        "status":"active"}
-    )
-    headers = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': "Bearer " + API_TOKEN
-    }
-    post_response = requests.post(url=BASE_URL, data=payload, headers=headers)
-    post_response_text = post_response.json()
-    print(post_response_text)
-    print("MMMM")
-    assert_that(post_response.status_code).is_equal_to(201)
-    print("SSSS")
-    names = [person for person in all_users if person['name'] == unique_name]
-    assert_that(names).contains(unique_name)
-    return unique_name
+# def test_create_user():
+#     # all_users = test_get_all_data()
+#     unique_name = f'User{str(uuid4())}'
+#     payload = dumps(
+#         {"name": unique_name, 
+#         "gender":"male", 
+#         "email": unique_name + '@gmail.com', 
+#         "status":"active"}
+#     )
+#     headers = {
+#         'Content-Type': 'application/json',
+#         'Accept': 'application/json',
+#         'Authorization': "Bearer " + API_TOKEN
+#     }
+#     post_response = requests.post(url=BASE_URL, data=payload, headers=headers)
+#     post_response_text = post_response.json()
+#     print(post_response_text)
+#     print("MMMM")
+#     assert_that(post_response.status_code).is_equal_to(201)
+#     print("SSSS")
+#     names = [person for person in all_users if person['name'] == unique_name]
+#     assert_that(names).contains(unique_name)
+#     return unique_name
     
 
 
