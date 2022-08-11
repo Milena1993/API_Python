@@ -7,8 +7,6 @@ from json import dumps
 import pytest
 import mysql.connector
 import json
-import pymysql
-
 
 
 def test_get_users():
