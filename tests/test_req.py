@@ -29,6 +29,10 @@ def invalid_authorization():
 def get_all_data(): 
     response = requests.get(BASE_URL, headers=authorization()).json()
     return response
+    
+def get_random_name():
+    name = f'User{str(uuid4())}'
+    return name
    
 def get_user_info():
     name = get_random_name()
@@ -40,9 +44,7 @@ def get_user_info():
     })
     return payload
 
-def get_random_name():
-    name = f'User{str(uuid4())}'
-    return name
+
 
 
 # 201 status code-user is created
@@ -65,17 +67,25 @@ def create_new_guser():
 #422 status code: Data validation failed
 def test_create_new_guser_422():
     post_response = requests.post(url=BASE_URL, data=get_user_info(), headers=invalid_authorization())
-    print("status code is" + " " + str(post_response.status_code))
+    assert_that(post_response.status_code).is_equal_to(422)
     
 #401 status code: Authentication failed.
 def test_create_new_guser_401():
     post_response = requests.post(url=BASE_URL, data=get_user_info())
-    print("status code is" + " " + str(post_response.status_code))
+    assert_that(post_response.status_code).is_equal_to(401)
 
-#405 status code:  Method not allowed
-def test_create_new_guser_415():
-    post_response = requests.unlink(url=BASE_URL, data=get_user_info())
-    print("status code is" + " " + str(post_response.status_code))
+#404 status code:  Not found
+def test_create_new_guser_404():
+    not_existing_id = "75160"
+    post_response = requests.get(url=f'{BASE_URL}/{not_existing_id}', data=get_user_info())
+    assert_that(post_response.status_code).is_equal_to(404)
+
+
+#400 status code: Bad Request 
+def test_create_new_guser_400():
+    test = "<test>"
+    post_response = requests.post(url= f'{BASE_URL}/{test}', data=get_user_info(), headers=authorization())
+    assert_that(post_response.status_code).is_equal_to(400)
 
 # 200 status code-everything worked as expected
 def test_get_added_user():
