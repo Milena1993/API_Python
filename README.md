@@ -34,7 +34,7 @@ from uuid import uuid4
 ```shell
 from assertpy.assertpy import assert_that
 ```
-###The assertpy library is available via PyPI. Just install with:
+### The assertpy library is available via PyPI. Just install with:
 
 ```
 pip install assertpy
