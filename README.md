@@ -59,17 +59,17 @@ And  run using
 ### MySQL server is used to connect to database. To download free MySQL use below link and follow instructions 
 https://dev.mysql.com/downloads/installer/
 
-# To use it in the project install
+#### To use it in the project install
 
 ```shell
 pip install mysql-connector-python
 ```
-# and import accordingly 
+#### and import accordingly 
 ```shell
 import mysql.connector
 ```
 
-# To run the databasetest use the simple pytest command for test running
+#### To run the databasetest use the simple pytest command for test running
 ```shell
 python -m pytest -v database/test_database_request.py 
 ```
