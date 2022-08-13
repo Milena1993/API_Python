@@ -1,10 +1,10 @@
 import mysql.connector
 
 mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="admin12345",
-  database="gorestusers"
+    host="localhost",
+    user="root",
+    password="admin12345",
+    database="gorestusers"
 )
 
 mycursor = mydb.cursor()
@@ -20,7 +20,4 @@ mycursor.execute("SELECT * FROM users")
 myresult = mycursor.fetchall()
 
 for x in myresult:
-  print(x)
-
-
-
+    print(x)

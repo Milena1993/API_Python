@@ -12,10 +12,10 @@ import json
 
 def test_get_users():
     mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="admin12345",
-    database="gorestusers"
+        host="localhost",
+        user="root",
+        password="admin12345",
+        database="gorestusers"
     )
     mycursor = mydb.cursor()
 
@@ -23,21 +23,17 @@ def test_get_users():
     response_text = get_response.json()
     for i in response_text:
         id_list = i['id']
-        name_list= i['name']
-        email_list =i['email']
-        gender_option= i['gender']
-        status_option=i['status']       
-        mycursor.execute("INSERT INTO users (userId, name, email, gender, status) VALUES (%s, %s, %s, %s, %s)", (id_list, name_list, email_list, gender_option, status_option))
+        name_list = i['name']
+        email_list = i['email']
+        gender_option = i['gender']
+        status_option = i['status']
+        mycursor.execute("INSERT INTO users (userId, name, email, gender, status) VALUES (%s, %s, %s, %s, %s)",
+                         (id_list, name_list, email_list, gender_option, status_option))
         mydb.commit()
-    
+
     mycursor.execute("SELECT * FROM users WHERE userId=3904")
 
     myresult = mycursor.fetchall()
 
     for x in myresult:
         print(x)
-
-    
-
-
-
