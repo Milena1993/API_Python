@@ -3,7 +3,7 @@
 ## Project is written using 
 
 * Python v3.9.6
-* Pytest 7.1.2
+* Pytest v7.1.2
 
 ## Setup
 
