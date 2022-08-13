@@ -69,7 +69,8 @@ pip install mysql-connector-python
 import mysql.connector
 ```
 
-#### To run the databasetest use the simple pytest command for test running
+#### To run the database test use the simple pytest command for test running
 ```shell
 python -m pytest -v database/test_database_request.py 
 ```
+##### The project is written using the resources from course "API testing with Python" Testautomation Univeristy and Python MySQL from www.w3schools.com
