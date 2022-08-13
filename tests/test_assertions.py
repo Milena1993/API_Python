@@ -10,6 +10,7 @@ import json
 
 class Tests(Testdata):
 
+    # Get all users added by me
     def test_get_all_data(self):
         get_data = APIRequests()
         get_response = get_data.get_all_data()
@@ -59,14 +60,13 @@ class Tests(Testdata):
             (self.unique_name, requests.codes.ok))
 
     # Put request-data successfully changed
-
     def test_update_user(self):
         get_data = APIRequests()
         get_updated_user = get_data.change_created_user()
         assert_that(get_updated_user).contains(requests.codes.ok)
 
     # 204 status code_User is deleted
-    def test_delet_created_user(self):
+    def test_delete_created_user(self):
         get_data = APIRequests()
         get_deleted_user = get_data.delete_created_user()
         assert_that(get_deleted_user).is_equal_to(requests.codes.no_content)
