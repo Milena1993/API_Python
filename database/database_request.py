@@ -1,11 +1,12 @@
 from urllib import response
-import requests
 from config import API_TOKEN, BASE_URL
 from assertpy.assertpy import assert_that
+import mysql.connector
 from uuid import uuid4
 from json import dumps
 import pytest
-import mysql.connector
+import requests
+
 import json
 
 
@@ -20,9 +21,6 @@ def test_get_users():
 
     get_response = requests.get(BASE_URL)
     response_text = get_response.json()
-    print(response_text)
-    print(len(response_text))
- 
     for i in response_text:
         id_list = i['id']
         name_list= i['name']
