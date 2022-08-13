@@ -52,7 +52,24 @@ Run tests in parallel using first install
 ```shell
 pip install pytest-xdist
 ```
-and run using 
+And  run using 
 ```shell
  python -m pytest -v tests/test_assertions.py
+```
+### MySQL server is used to connect to database. To download free MySQL use below link and follow instructions 
+https://dev.mysql.com/downloads/installer/
+
+To use it in the project install
+
+```shell
+pip install mysql-connector-python
+```
+and import accordingly 
+```shell
+import mysql.connector
+```
+
+To run the test use the simple pytest command for test running
+```shell
+python -m pytest -v database/test_database_request.py 
 ```
