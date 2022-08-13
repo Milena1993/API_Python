@@ -30,7 +30,7 @@ pip install requests
 ```shell
 from uuid import uuid4
 ```
-### Assertions are done using 
+### Assertions are done importing
 ```shell
 from assertpy.assertpy import assert_that
 ```
