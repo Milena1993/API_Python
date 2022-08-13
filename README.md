@@ -17,16 +17,16 @@ https://github.com/Milena1993/API_Python.git
 
 ## Using Python  with Pytest and Request moduce
 
-### Install pytest
+### Install pytest by
 ```shell
 pip install pytest
 ```
-### Install request module
+### Install request module by
 
 ```shell
 pip install requests
 ```
-### To generate random data import
+### To generate random data import by
 ```shell
 from uuid import uuid4
 ```
@@ -35,26 +35,25 @@ from uuid import uuid4
 from assertpy.assertpy import assert_that
 ```
 ### The assertpy library is available via PyPI. Just install with:
-
 ```
 pip install assertpy
 ```
 
-Run tests using: 
+#### Run tests using: 
 ```shell
  python -m pytest -v tests/test_assertions.py
 ```
-Run tests including all the print statments using:
+####  Run tests including all the print statments using:
 ```shell
  python -m pytest -v tests/test_assertions.py
 ```
-Run tests in parallel using first install 
+#### For running tests in parallel first install 
 ```shell
 pip install pytest-xdist
 ```
-And  run using 
+#### And  run using 
 ```shell
- python -m pytest -v tests/test_assertions.py
+ python -m pytest -n 4 tests/test_assertions.py
 ```
 ### MySQL server is used to connect to database. To download free MySQL use below link and follow instructions 
 https://dev.mysql.com/downloads/installer/
