@@ -52,7 +52,6 @@ class Tests(Testdata):
             requests.codes.bad_request)
 
     # 200 status code-everything worked as expected
-
     def test_get_added_user(self):
         get_data = APIRequests()
         get_added_user = get_data.get_added_user()
