@@ -7,7 +7,7 @@
 
 ## Setup
 
-Install all the required Python modules using `pip`:
+Install all the required Python modules using ```shell pip ```:
 
 You can get a copy of all files used in this tutorial by cloning this repository!
 
